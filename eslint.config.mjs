@@ -5,17 +5,25 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
+  // Load Next.js base config and import plugin
   ...compat.config({
     extends: ['next'],
-    plugins: ['import', '@typescript-eslint'], // added TypeScript plugin
+    plugins: ['import', '@typescript-eslint', 'react', 'react-hooks'],
   }),
   {
     rules: {
-      'react/no-unescaped-entities': 'off',
-      '@next/next/no-img-element': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
-      '@typescript-eslint/no-explicit-any': 'off', // disables the error
-      'react-hooks/exhaustive-deps': 'off',
+      // React rules
+      'react/no-unescaped-entities': 'warn',
+      '@next/next/no-img-element': 'warn',
+
+      // TypeScript rules
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+
+      // React hooks
+      'react-hooks/exhaustive-deps': 'warn',
+
+      // Import plugin rules
       'import/no-unresolved': 'error',
       'import/named': 'error',
       'import/default': 'error',
